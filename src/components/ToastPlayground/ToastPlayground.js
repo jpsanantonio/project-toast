@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import Button from "../Button";
-
+import Toast from "../Toast";
 import styles from "./ToastPlayground.module.css";
 
 const VARIANT_OPTIONS = ["notice", "warning", "success", "error"];
@@ -9,6 +9,12 @@ const VARIANT_OPTIONS = ["notice", "warning", "success", "error"];
 function ToastPlayground() {
   const [variant, setVariant] = useState(VARIANT_OPTIONS[0]); // default value: 'notice'
   const [message, setMessage] = useState("");
+  const [showToast, setShowToast] = useState(false);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setShowToast(true);
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -16,8 +22,14 @@ function ToastPlayground() {
         <img alt="Cute toast mascot" src="/toast.png" />
         <h1>Toast Playground</h1>
       </header>
-
-      <form className={styles.controlsWrapper}>
+      {showToast && (
+        <Toast
+          variant={variant}
+          message={message}
+          setShowToast={setShowToast}
+        />
+      )}
+      <form className={styles.controlsWrapper} onSubmit={handleSubmit}>
         <div className={styles.row}>
           <label
             htmlFor="message"
@@ -58,7 +70,7 @@ function ToastPlayground() {
         <div className={styles.row}>
           <div className={styles.label} />
           <div className={`${styles.inputWrapper} ${styles.radioWrapper}`}>
-            <Button>Pop Toast!</Button>
+            <Button type="submit">Pop Toast!</Button>
           </div>
         </div>
       </form>
