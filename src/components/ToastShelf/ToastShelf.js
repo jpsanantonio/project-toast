@@ -1,9 +1,11 @@
-import React from "react";
+import { useContext } from "react";
 
+import { ToastContext } from "../ToastProvider";
 import Toast from "../Toast";
 import styles from "./ToastShelf.module.css";
 
-function ToastShelf({ toasts, setToasts }) {
+function ToastShelf() {
+  const { toasts, setToasts } = useContext(ToastContext);
   const handleClose = (id) => {
     const newToasts = toasts.filter((toast) => toast.id !== id);
 
