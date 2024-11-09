@@ -8,14 +8,14 @@ import styles from "./ToastPlayground.module.css";
 const VARIANT_OPTIONS = ["notice", "warning", "success", "error"];
 
 function ToastPlayground() {
-  const { toasts, setToasts } = useContext(ToastContext);
+  const { addToast } = useContext(ToastContext);
   const [variant, setVariant] = useState(VARIANT_OPTIONS[0]); // default value: 'notice'
   const [message, setMessage] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    setToasts([...toasts, { id: crypto.randomUUID(), variant, message }]);
+    addToast(message, variant);
     setMessage("");
     setVariant(VARIANT_OPTIONS[0]);
   };

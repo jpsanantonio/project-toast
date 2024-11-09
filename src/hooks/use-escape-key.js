@@ -9,7 +9,7 @@ export default function useEscapeKey(callback) {
     const handleKeyDown = (event) => {
       if (event.key !== "Escape") return;
 
-      callback();
+      callback(event);
     };
 
     document.addEventListener("keydown", handleKeyDown);

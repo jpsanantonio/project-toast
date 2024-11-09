@@ -32,7 +32,7 @@ function Toast({ toast, onClose }) {
       </p>
       <button
         className={styles.closeButton}
-        onClick={() => onClose(id)}
+        onClick={onClose}
         aria-label="Dismiss message"
         aria-live="off"
       >
