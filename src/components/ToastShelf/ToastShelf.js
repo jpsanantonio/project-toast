@@ -1,8 +1,7 @@
-import { useCallback, useContext } from "react";
+import { useContext } from "react";
 
 import { ToastContext } from "../ToastProvider";
 import Toast from "../Toast";
-import useEscapeKey from "../../hooks/use-escape-key";
 import styles from "./ToastShelf.module.css";
 
 function ToastShelf() {
@@ -13,10 +12,6 @@ function ToastShelf() {
 
     setToasts(newToasts);
   };
-
-  const clearAllToasts = useCallback(() => setToasts([]), [setToasts]);
-
-  useEscapeKey(clearAllToasts);
 
   return (
     <ol
